@@ -30,7 +30,9 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun ProfileScreen(
-    onNavigateToMatchScore: () -> Unit = {}
+    onNavigateToMatchScore: () -> Unit = {},
+    onNavigateToEditProfile: () -> Unit = {},
+    onNavigateToSignOut: () -> Unit = {}
 ) {
     val backgroundColor = Color(0xFFF5F4F0)
     val textColor = Color(0xFF13151D)
@@ -118,7 +120,7 @@ fun ProfileScreen(
                         .size(40.dp)
                         .clip(CircleShape)
                         .background(Color(0xFFF5F4F0))
-                        .clickable { /* TODO */ },
+                        .clickable { onNavigateToEditProfile() },
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
@@ -155,7 +157,7 @@ fun ProfileScreen(
                 MenuItem(
                     icon = Icons.Default.Edit,
                     text = "Edit profile",
-                    onClick = { /* TODO */ }
+                    onClick = { onNavigateToEditProfile() }
                 )
                 Divider(color = Color(0xFFF5F4F0), thickness = 1.dp, modifier = Modifier.padding(horizontal = 16.dp))
                 MenuItem(
@@ -184,7 +186,7 @@ fun ProfileScreen(
 
         // Sign out Button
         OutlinedButton(
-            onClick = { /* TODO */ },
+            onClick = { onNavigateToSignOut() },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(56.dp),

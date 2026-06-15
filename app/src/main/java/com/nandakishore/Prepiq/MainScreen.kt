@@ -32,7 +32,9 @@ sealed class BottomNavItem(val route: String, val icon: ImageVector, val label: 
 fun MainScreen(
     onNavigateToSessionSummary: () -> Unit = {},
     onNavigateToMatchScore: () -> Unit = {},
-    onNavigateToAnswerScreen: () -> Unit = {}
+    onNavigateToAnswerScreen: () -> Unit = {},
+    onNavigateToEditProfile: () -> Unit = {},
+    onNavigateToSignOut: () -> Unit = {}
 ) {
     val navController = rememberNavController()
 
@@ -96,7 +98,11 @@ fun MainScreen(
                 }
                 composable(BottomNavItem.Reminders.route) { RemindersScreen() }
                 composable(BottomNavItem.Profile.route) { 
-                    ProfileScreen(onNavigateToMatchScore = onNavigateToMatchScore) 
+                    ProfileScreen(
+                        onNavigateToMatchScore = onNavigateToMatchScore,
+                        onNavigateToEditProfile = onNavigateToEditProfile,
+                        onNavigateToSignOut = onNavigateToSignOut
+                    ) 
                 }
             }
         }

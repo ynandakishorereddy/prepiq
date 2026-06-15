@@ -58,6 +58,12 @@ fun AppNavigation() {
                 },
                 onNavigateToAnswerScreen = {
                     navController.navigate("answer_screen")
+                },
+                onNavigateToEditProfile = {
+                    navController.navigate("edit_profile")
+                },
+                onNavigateToSignOut = {
+                    navController.navigate("sign_out")
                 }
             )
         }
@@ -97,6 +103,24 @@ fun AppNavigation() {
                         popUpTo("main")
                     }
                 }
+            )
+        }
+        
+        composable("edit_profile") {
+            EditProfileScreen(
+                onNavigateBack = { navController.popBackStack() },
+                onSave = { navController.popBackStack() }
+            )
+        }
+        
+        composable("sign_out") {
+            SignOutScreen(
+                onConfirmSignOut = {
+                    navController.navigate("login") {
+                        popUpTo("main") { inclusive = true }
+                    }
+                },
+                onCancel = { navController.popBackStack() }
             )
         }
     }
