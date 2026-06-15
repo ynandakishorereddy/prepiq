@@ -25,7 +25,9 @@ import androidx.compose.ui.unit.sp
 data class QuestionItem(val type: String, val text: String)
 
 @Composable
-fun PracticeScreen() {
+fun PracticeScreen(
+    onNavigateToAnswerScreen: () -> Unit = {}
+) {
     val backgroundColor = Color(0xFFF5F4F0)
     val textColor = Color(0xFF13151D)
     val subtitleColor = Color(0xFF6B6A70)
@@ -121,7 +123,9 @@ fun PracticeScreen() {
         ) {
             items(mockQuestions) { question ->
                 Card(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { onNavigateToAnswerScreen() },
                     shape = RoundedCornerShape(16.dp),
                     colors = CardDefaults.cardColors(containerColor = Color.White)
                 ) {

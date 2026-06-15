@@ -30,7 +30,9 @@ sealed class BottomNavItem(val route: String, val icon: ImageVector, val label: 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
-    onNavigateToSessionSummary: () -> Unit = {}
+    onNavigateToSessionSummary: () -> Unit = {},
+    onNavigateToMatchScore: () -> Unit = {},
+    onNavigateToAnswerScreen: () -> Unit = {}
 ) {
     val navController = rememberNavController()
 
@@ -45,36 +47,39 @@ fun MainScreen(
         bottomBar = {
             NavigationBar(
                 containerColor = Color.White,
-                contentColor = Color(0xFF5C5AE8)
+                tonalElevation = 8.dp
             ) {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentDestination = navBackStackEntry?.destination
 
-                items.forEach { item ->
+                items.forEach { screen ->
+                    val selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true
                     NavigationBarItem(
-                        icon = { Icon(item.icon, contentDescription = item.label) },
-                        label = { Text(item.label) },
-                        selected = currentDestination?.hierarchy?.any { it.route == item.route } == true,
+                        icon = {
+                            Icon(
+                                imageVector = screen.icon,
+                                contentDescription = screen.title,
+                                tint = if (selected) Color(0xFF5C5AE8) else Color(0xFF6B6A70)
+                            )
+                        },
+                        label = {
+                            Text(
+                                text = screen.title,
+                                color = if (selected) Color(0xFF5C5AE8) else Color(0xFF6B6A70)
+                            )
+                        },
+                        selected = selected,
                         onClick = {
-                            navController.navigate(item.route) {
-                                // Pop up to the start destination of the graph to
-                                // avoid building up a large stack of destinations
+                            navController.navigate(screen.route) {
                                 popUpTo(navController.graph.findStartDestination().id) {
                                     saveState = true
                                 }
-                                // Avoid multiple copies of the same destination when
-                                // reselecting the same item
                                 launchSingleTop = true
-                                // Restore state when reselecting a previously selected item
                                 restoreState = true
                             }
                         },
                         colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = Color(0xFF5C5AE8),
-                            unselectedIconColor = Color.Gray,
-                            selectedTextColor = Color(0xFF5C5AE8),
-                            unselectedTextColor = Color.Gray,
-                            indicatorColor = Color.Transparent
+                            indicatorColor = Color(0xFFF5F4F0)
                         )
                     )
                 }
@@ -86,9 +91,13 @@ fun MainScreen(
                 composable(BottomNavItem.Home.route) { 
                     HomeScreen(onNavigateToSessionSummary = onNavigateToSessionSummary) 
                 }
-                composable(BottomNavItem.Practice.route) { PracticeScreen() }
+                composable(BottomNavItem.Practice.route) { 
+                    PracticeScreen(onNavigateToAnswerScreen = onNavigateToAnswerScreen) 
+                }
                 composable(BottomNavItem.Reminders.route) { RemindersScreen() }
-                composable(BottomNavItem.Profile.route) { ProfileScreen() }
+                composable(BottomNavItem.Profile.route) { 
+                    ProfileScreen(onNavigateToMatchScore = onNavigateToMatchScore) 
+                }
             }
         }
     }

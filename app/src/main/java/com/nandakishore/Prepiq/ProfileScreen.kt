@@ -29,7 +29,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun ProfileScreen() {
+fun ProfileScreen(
+    onNavigateToMatchScore: () -> Unit = {}
+) {
     val backgroundColor = Color(0xFFF5F4F0)
     val textColor = Color(0xFF13151D)
     val subtitleColor = Color(0xFF6B6A70)
@@ -167,7 +169,7 @@ fun ProfileScreen() {
                     icon = Icons.Default.Description,
                     text = "My resumes",
                     trailingText = "3",
-                    onClick = { /* TODO */ }
+                    onClick = { onNavigateToMatchScore() }
                 )
                 Divider(color = Color(0xFFF5F4F0), thickness = 1.dp, modifier = Modifier.padding(horizontal = 16.dp))
                 MenuItem(
