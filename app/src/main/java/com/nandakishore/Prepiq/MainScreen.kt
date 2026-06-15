@@ -29,7 +29,9 @@ sealed class BottomNavItem(val route: String, val icon: ImageVector, val label: 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen() {
+fun MainScreen(
+    onNavigateToSessionSummary: () -> Unit = {}
+) {
     val navController = rememberNavController()
 
     val items = listOf(
@@ -81,7 +83,9 @@ fun MainScreen() {
     ) { innerPadding ->
         Box(modifier = Modifier.padding(innerPadding)) {
             NavHost(navController = navController, startDestination = BottomNavItem.Home.route) {
-                composable(BottomNavItem.Home.route) { HomeScreen() }
+                composable(BottomNavItem.Home.route) { 
+                    HomeScreen(onNavigateToSessionSummary = onNavigateToSessionSummary) 
+                }
                 composable(BottomNavItem.Practice.route) { PracticeScreen() }
                 composable(BottomNavItem.Reminders.route) { RemindersScreen() }
                 composable(BottomNavItem.Profile.route) { ProfileScreen() }

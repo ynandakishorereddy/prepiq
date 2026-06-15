@@ -49,7 +49,26 @@ fun AppNavigation() {
         }
         
         composable("main") {
-            MainScreen()
+            MainScreen(
+                onNavigateToSessionSummary = {
+                    navController.navigate("session_summary")
+                }
+            )
+        }
+
+        composable("session_summary") {
+            SessionSummaryScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                },
+                onDone = {
+                    navController.popBackStack()
+                },
+                onStartNewSession = {
+                    // TODO: Navigate to Start Session
+                    navController.popBackStack()
+                }
+            )
         }
     }
 }

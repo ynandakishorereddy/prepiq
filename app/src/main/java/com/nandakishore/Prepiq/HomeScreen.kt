@@ -21,7 +21,9 @@ import androidx.compose.ui.unit.sp
 data class SessionItem(val company: String, val role: String, val date: String, val score: Int)
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    onNavigateToSessionSummary: () -> Unit = {}
+) {
     val backgroundColor = Color(0xFFF5F4F0)
     val textColor = Color(0xFF13151D)
     val subtitleColor = Color(0xFF6B6A70)
@@ -165,7 +167,7 @@ fun HomeScreen() {
         ) {
             items(mockSessions) { session ->
                 Card(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth().clickable { onNavigateToSessionSummary() },
                     shape = RoundedCornerShape(16.dp),
                     colors = CardDefaults.cardColors(containerColor = Color.White)
                 ) {
