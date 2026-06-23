@@ -8,13 +8,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ChevronRight
-import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.HelpOutline
+import androidx.compose.material.icons.filled.ExitToApp
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.PersonOutline
-import androidx.compose.material.icons.outlined.Logout
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -168,14 +167,14 @@ fun ProfileScreen(
                 )
                 Divider(color = Color(0xFFF5F4F0), thickness = 1.dp, modifier = Modifier.padding(horizontal = 16.dp))
                 MenuItem(
-                    icon = Icons.Default.Description,
+                    icon = Icons.Default.List,
                     text = "My resumes",
                     trailingText = "3",
                     onClick = { onNavigateToMatchScore() }
                 )
                 Divider(color = Color(0xFFF5F4F0), thickness = 1.dp, modifier = Modifier.padding(horizontal = 16.dp))
                 MenuItem(
-                    icon = Icons.Default.HelpOutline,
+                    icon = Icons.Default.Info,
                     text = "Help & feedback",
                     onClick = { /* TODO */ }
                 )
@@ -198,7 +197,7 @@ fun ProfileScreen(
             )
         ) {
             Icon(
-                imageVector = Icons.Outlined.Logout,
+                imageVector = Icons.Default.ExitToApp,
                 contentDescription = "Sign out",
                 tint = redColor
             )
@@ -293,7 +292,7 @@ fun MenuItem(
             Spacer(modifier = Modifier.width(8.dp))
         }
         Icon(
-            imageVector = Icons.Default.ChevronRight,
+            imageVector = Icons.Default.KeyboardArrowRight,
             contentDescription = null,
             tint = Color(0xFF6B6A70)
         )

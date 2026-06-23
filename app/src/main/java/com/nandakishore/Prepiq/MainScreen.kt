@@ -6,13 +6,14 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.outlined.FitnessCenter
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
@@ -22,7 +23,7 @@ import androidx.navigation.compose.rememberNavController
 
 sealed class BottomNavItem(val route: String, val icon: ImageVector, val label: String) {
     object Home : BottomNavItem("home", Icons.Default.Home, "Home")
-    object Practice : BottomNavItem("practice", Icons.Outlined.FitnessCenter, "Practice")
+    object Practice : BottomNavItem("practice", Icons.Default.PlayArrow, "Practice")
     object Reminders : BottomNavItem("reminders", Icons.Default.Notifications, "Reminders")
     object Profile : BottomNavItem("profile", Icons.Default.Person, "Profile")
 }
@@ -60,13 +61,13 @@ fun MainScreen(
                         icon = {
                             Icon(
                                 imageVector = screen.icon,
-                                contentDescription = screen.title,
+                                contentDescription = screen.label,
                                 tint = if (selected) Color(0xFF5C5AE8) else Color(0xFF6B6A70)
                             )
                         },
                         label = {
                             Text(
-                                text = screen.title,
+                                text = screen.label,
                                 color = if (selected) Color(0xFF5C5AE8) else Color(0xFF6B6A70)
                             )
                         },

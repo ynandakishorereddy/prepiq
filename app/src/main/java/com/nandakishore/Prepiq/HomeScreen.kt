@@ -1,13 +1,16 @@
 package com.nandakishore.Prepiq
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -214,9 +217,10 @@ fun HomeScreen(
                         Spacer(modifier = Modifier.width(16.dp))
                         
                         Icon(
-                            imageVector = Icons.Default.ChevronRight,
-                            contentDescription = "Details",
-                            tint = subtitleColor
+                            imageVector = Icons.Default.KeyboardArrowRight,
+                            contentDescription = "Arrow Right",
+                            tint = subtitleColor,
+                            modifier = Modifier.size(16.dp)
                         )
                     }
                 }

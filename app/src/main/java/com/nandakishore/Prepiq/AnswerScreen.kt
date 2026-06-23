@@ -10,7 +10,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.outlined.Speed
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.outlined.ThumbUp
 import androidx.compose.material.icons.outlined.Warning
 import androidx.compose.material3.*
@@ -156,7 +156,7 @@ fun AnswerScreen(
                     Spacer(modifier = Modifier.height(24.dp))
 
                     // Strengths
-                    Row(crossAxisAlignment = Alignment.Top) {
+                    Row(verticalAlignment = Alignment.Top) {
                         Icon(
                             imageVector = Icons.Outlined.ThumbUp,
                             contentDescription = "Strengths",
@@ -184,7 +184,7 @@ fun AnswerScreen(
                     Spacer(modifier = Modifier.height(24.dp))
 
                     // Areas to improve
-                    Row(crossAxisAlignment = Alignment.Top) {
+                    Row(verticalAlignment = Alignment.Top) {
                         Icon(
                             imageVector = Icons.Outlined.Warning,
                             contentDescription = "Areas to improve",
@@ -224,7 +224,7 @@ fun AnswerScreen(
                             modifier = Modifier.fillMaxWidth()
                         ) {
                             Icon(
-                                imageVector = Icons.Outlined.Speed,
+                                imageVector = Icons.Default.CheckCircle,
                                 contentDescription = "Score",
                                 tint = subtitleColor,
                                 modifier = Modifier.size(20.dp)
