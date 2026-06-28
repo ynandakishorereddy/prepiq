@@ -1,0 +1,1 @@
+export default function PracticePage() { return <div className="glass-card"><h2 className="text-primary mb-md">Practice Modes</h2><p className="text-secondary">Select an interview mode to practice.</p></div>; }
